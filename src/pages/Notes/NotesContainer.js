@@ -7,12 +7,11 @@ import Notes from './NotesView';
 
 const mapDispatchToProps = {
     addNote: notesOperations.actions.addNote,
-    activeNotes: notesOperations.actions.activeNotes,
-    removeNote: notesOperations.actions.removeNote,
 };
 
 const mapStateToProps = (state) => ({
-    Lister: notesSelectors.getNotesList(state),
+    list: notesSelectors.getNotesList(state),
+    categoryList: notesSelectors.getCategoryList(state),
 });
 
 const NotesView = compose(
@@ -21,25 +20,26 @@ const NotesView = compose(
         mapDispatchToProps
     ),
     withState('value', 'handleInputChange', ''),
+    withState('content', 'handleContentChange', ''),
+    withState('select', 'handleCategoryChange', 'Task'),
     withHandlers({
         handleAddNote: (props) => () => {
             const note = {
                 id: uuid(),
                 name: props.value,
-                text: props.value,
+                created: "",
+                category: {
+                    name: props.select,
+                    icon: "fas fa-cogs"
+                },
+                content: props.content,
+                dates: "",
                 status: false,
             };
             props.addNote(note);
             props.handleInputChange('');
-        },
-        handleActiveFilter: (props) => () => {
-            console.log(props)
-            props.activeNotes()
-        },
-        handleDeleteNote: (props) => (id) => {
-            props.removeNote(id)
+            props.handleContentChange('');
         }
-        
     }),
 );
 export default NotesView(Notes);

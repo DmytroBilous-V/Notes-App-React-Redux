@@ -2,14 +2,16 @@ import React from 'react';
 import { routes } from '../router';
 import { Link } from 'react-router-dom';
 import NotesList from '../../components/NotesList';
+import Header from '../../layout/Header';
 
 
 function ArchivedNotes ({ archivedNotes, handleDeleteNote, handleToActive }) {
     return (
         <div>
-            <header>
-                header
-            </header>
+            <Header
+                headerClass='active_header'
+                titles={["Name", "Created", "Category", "Content", "Dates"]}
+            />
             <NotesList
                 notes={archivedNotes}
                 deleteNote={handleDeleteNote}

@@ -24,7 +24,7 @@ function BlockButtons({ toggle, id, deleteNote, archiveNote, activeNote }) {
         )
     } else {
         return (
-            <div className="active-list_item__btn-block">
+            <div className="unactive-list_item__btn-block">
                 <NoteItemButton
                     buttonClass="fas fa-upload"
                     value={id}

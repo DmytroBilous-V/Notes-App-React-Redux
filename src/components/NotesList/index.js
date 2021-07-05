@@ -1,5 +1,4 @@
 import React from 'react';
-// import NoteItemButton from '../NoteItemButton/NoteItemButton';
 import BlockButtons from './components/BlockButtons';
 
 

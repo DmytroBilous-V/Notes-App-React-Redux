@@ -10,15 +10,19 @@ const initialState = {
 
 export default handleActions({
     [actions.addNote]: (state, action) => ({
+        ...state,
         notesList: state.notesList.concat(action.payload)
     }),
     [actions.activeNotes]: (state) => ({
+        ...state,
         notesList: state.notesList.filter(t => t.status)
     }),
     [actions.removeNote]: (state, action) => ({
+        ...state,
         notesList: [].concat(helperDeleteForId(state.notesList, action.payload))
     }),
     [actions.toArchiveNote]: (state, action) => ({
+        ...state,
         notesList: state.notesList.map(el => {
             if (el.id === action.payload) {
                 el.status = true;
@@ -28,6 +32,7 @@ export default handleActions({
         })
     }),
     [actions.toActiveNote]: (state, action) => ({
+        ...state,
         notesList: state.notesList.map(el => {
             if (el.id === action.payload) {
                 el.status = false;
